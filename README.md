@@ -1,18 +1,61 @@
 # gostack-template-node-fundamentals
 
-Basic API, with JWT implemented, that allows to:
+Simple example API that receives income and outcome transactions and generates, and outputs list of transactions and result balance account.
 
-- Create users (Customers and personal service providers)
-- Authenticate user
-- Schedule services
-- Update Avatar image
+To use the application:
+Install packages: yarn
+Run: yarn dev:server
 
-To use the application, just run:
-- yarn
-- yarn dev:server
+Transaction result example:
+{
+  "id": "uuid",
+  "title": "Salary",
+  "value": 3000,
+  "type": "income"
+}
 
-With Postman, insomnia or any other:
-- create a user
-- Authenticate using username and password
-- Get the Access token retrieved by the authenticate method
-- Use it as an Authorization Bearer to use the authenticated endpoints.
+Endpoints:
+
+POST /transactions
+Payload:
+{
+  "title": "Salary",
+  "value": 3000,
+  "type": "income"
+}
+
+GET /transactions
+Expected response example:
+{
+  "transactions": [
+    {
+      "id": "uuid",
+      "title": "Salary",
+      "value": 4000,
+      "type": "income"
+    },
+    {
+      "id": "uuid",
+      "title": "Freelance",
+      "value": 2000,
+      "type": "income"
+    },
+    {
+      "id": "uuid",
+      "title": "Credit Card Payment",
+      "value": 4000,
+      "type": "outcome"
+    },
+    {
+      "id": "uuid",
+      "title": "Gamer Chair",
+      "value": 1200,
+      "type": "outcome"
+    }
+  ],
+  "balance": {
+    "income": 6000,
+    "outcome": 5200,
+    "total": 800
+  }
+}
